@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
 declare(strict_types=1);
 
 namespace Stratus21\GraphCorsFix\Model\Query;
@@ -26,11 +29,11 @@ class QueryParser implements ReloadProcessorInterface
      * @return DocumentNode
      * @throws \GraphQL\Error\SyntaxError
      */
-    public function parse(string $query): DocumentNode
+    public function parse(string $query): DocumentNode | string
     {
         $cacheKey = sha1($query);
         if (!isset($this->parsedQueries[$cacheKey])) {
-            $this->parsedQueries[$cacheKey] = Parser::parse(new Source($query, 'GraphQL'));
+            $this->parsedQueries[$cacheKey] = !empty($query) ? Parser::parse(new Source($query, 'GraphQL')) : '';
         }
         return $this->parsedQueries[$cacheKey];
     }

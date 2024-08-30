@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
 declare(strict_types=1);
 
 namespace Stratus21\GraphCorsFix\Model\Query;
@@ -48,16 +51,18 @@ class Fields implements ResetAfterRequestInterface
             if (is_string($query)) {
                 $query = $this->queryParser->parse($query);
             }
-            \GraphQL\Language\Visitor::visit(
-                $query,
-                [
-                    'leave' => [
-                        NodeKind::NAME => function (Node $node) use (&$queryFields) {
-                            $queryFields[$node->value] = $node->value;
-                        }
+            if (!empty($query)) {
+                \GraphQL\Language\Visitor::visit(
+                    $query,
+                    [
+                        'leave' => [
+                            NodeKind::NAME => function (Node $node) use (&$queryFields) {
+                                $queryFields[$node->value] = $node->value;
+                            }
+                        ]
                     ]
-                ]
-            );
+                );
+            }
             if (isset($variables)) {
                 $this->extractVariables($queryFields, $variables);
             }
@@ -114,4 +119,3 @@ class Fields implements ResetAfterRequestInterface
         $this->fieldsUsedInQuery = [];
     }
 }
-
