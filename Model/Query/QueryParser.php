@@ -7,9 +7,18 @@ namespace Stratus21\GraphCorsFix\Model\Query;
 use GraphQL\Language\AST\DocumentNode;
 use GraphQL\Language\Parser;
 use GraphQL\Language\Source;
+use Magento\Framework\App\State\ReloadProcessorInterface;
 
-class QueryParser extends \Magento\Framework\GraphQl\Query\QueryParser
+/**
+ * Wrapper for GraphQl query parser. It parses query string into a `GraphQL\Language\AST\DocumentNode`
+ */
+class QueryParser implements ReloadProcessorInterface
 {
+    /**
+     * @var string[]
+     */
+    private $parsedQueries = [];
+
     /**
      * Parse query string into a `GraphQL\Language\AST\DocumentNode`.
      *
@@ -17,12 +26,20 @@ class QueryParser extends \Magento\Framework\GraphQl\Query\QueryParser
      * @return DocumentNode
      * @throws \GraphQL\Error\SyntaxError
      */
-    public function parse(string $query): DocumentNode | string
+    public function parse(string $query): DocumentNode
     {
         $cacheKey = sha1($query);
         if (!isset($this->parsedQueries[$cacheKey])) {
-            $this->parsedQueries[$cacheKey] = !empty($query) ? Parser::parse(new Source($query, 'GraphQL')) : '';
+            $this->parsedQueries[$cacheKey] = Parser::parse(new Source($query, 'GraphQL'));
         }
         return $this->parsedQueries[$cacheKey];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function reloadState(): void
+    {
+        $this->parsedQueries = [];
     }
 }

@@ -5,6 +5,7 @@
     Files: https://github.com/magento/magento2/blob/0bf61134fa9798d9b2127c889624b50751e329bd/lib/internal/Magento/Framework/GraphQl/Query/Fields.php
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- We are not extending the parent class - we are completely overwriting to change the return type -->
     <preference for="Magento\Framework\GraphQl\Query\Fields" type="Stratus21\GraphCorsFix\Model\Query\Fields" />
     <preference for="Magento\Framework\GraphQl\Query\QueryParser" type="Stratus21\GraphCorsFix\Model\Query\QueryParser" />
 </config>
