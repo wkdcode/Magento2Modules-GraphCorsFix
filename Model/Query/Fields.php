@@ -15,7 +15,7 @@ use Magento\Framework\App\ObjectManager;
 /**
  * This class holds a list of all queried fields and is used to enable performance optimization for schema loading.
  */
-class FieldsFix extends \Magento\Framework\GraphQl\Query\Fields
+class Fields extends \Magento\Framework\GraphQl\Query\Fields
 {
 
     /**

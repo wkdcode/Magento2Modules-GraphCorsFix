@@ -3,13 +3,22 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     
     <!-- We are not extending the parent class - we are completely overwriting to change the return type -->
-    <preference for="Magento\Framework\GraphQl\Query\Fields" type="Stratus21\GraphCorsFix\Model\Query\FieldsFix" />
+    <preference for="Magento\Framework\GraphQl\Query\Fields" type="Stratus21\GraphCorsFix\Model\Query\Fields" />
     
-    <!-- <preference for="Magento\Framework\GraphQl\Query\QueryParser" type="Stratus21\GraphCorsFix\Model\Query\QueryParser" /> -->
+    <preference for="Magento\Framework\GraphQl\Query\QueryParser" type="Stratus21\GraphCorsFix\Model\Query\QueryParser" />
     
-    <type name="Magento\Framework\GraphQl\Query\QueryParser">
+
+    <!-- <type name="Magento\Framework\GraphQl\Query\QueryParser">
+        <arguments>
+            <argument name="your_custom_argument" xsi:type="string">your_value</argument>
+        </arguments>
+        <preferences for="Magento\Framework\GraphQl\Query\QueryParser" type="Stratus21\GraphCorsFix\Model\Query\QueryParser"/>
+    </type> -->
+
+
+    <!-- <type name="Magento\Framework\GraphQl\Query\QueryParser">
         <plugin name="vendor_module_queryparser_plugin" type="Stratus21\GraphCorsFix\Plugin\QueryParserPlugin" />
-    </type>
+    </type> -->
 
     <!-- <type name="Magento\Framework\GraphQl\Query\Fields">
         <plugin name="vendor_module_fields_plugin" type="Stratus21\GraphCorsFix\Plugin\FieldsPlugin" />
