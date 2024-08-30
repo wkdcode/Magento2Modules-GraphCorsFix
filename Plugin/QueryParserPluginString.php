@@ -4,23 +4,23 @@ namespace Stratus21\GraphCorsFix\Plugin;
 
 use GraphQL\Language\AST\DocumentNode;
 use Magento\Framework\GraphQl\Query\QueryParser;
-use Psr\Log\LoggerInterface;
+use Stratus21\Core\Notify\Responder;
 
 class QueryParserPluginString
 {
     /**
-     * @var LoggerInterface
-     */
-    private $logger;
+     * @var \Stratus21\Core\Notify\Responder
+     */ 
+    protected $responder;
 
     /**
      * Constructor
      *
-     * @param LoggerInterface $logger
+     * @param Responder $logger
      */
-    public function __construct(LoggerInterface $logger)
+    public function __construct(Responder $responder)
     {
-        $this->logger = $logger;
+        $this->responder            = $responder;
     }
 
     /**
@@ -33,10 +33,7 @@ class QueryParserPluginString
      */
     public function afterParse(QueryParser $subject, DocumentNode $result, string $query)
     {
-        // Log the contents of the definitions array
-        $this->logger->info('GraphQL DocumentNode definitions:', [
-            'definitions' => $result->definitions
-        ]);
+        $this->responder->log('LIAM','info', print_r($result->definitions ,true));
 
         // Check if the DocumentNode's definitions are empty
         if (empty($result->definitions)) {
