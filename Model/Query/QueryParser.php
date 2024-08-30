@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Stratus21\GraphCorsFix\Model\Query;
 
 use GraphQL\Language\AST\DocumentNode;
