@@ -2,7 +2,7 @@
 
 namespace Stratus21\GraphCorsFix\Plugin;
 
-use Magento\Framework\GraphQl\Query\QueryParser;
+use Magento\Framework\GraphQl\Query\QueryParser as Subject;
 use GraphQL\Language\Parser;
 use GraphQL\Language\Source;
 use GraphQL\Language\AST\DocumentNode;
@@ -12,27 +12,27 @@ class QueryParserPlugin
     /**
      * Around plugin for the parse method.
      *
-     * @param QueryParser $subject
+     * @param Subject $subject
      * @param callable $proceed
      * @param string $query
      * @return DocumentNode|string
      */
-    public function aroundParse(QueryParser $subject, callable $proceed, string $query)
+    public function aroundParse(Subject $subject, callable $proceed, string $query)
     {
-        // Generate the cache key
         $cacheKey = sha1($query);
 
-        // Check if the query has already been parsed and cached
+        // Check if the query is already parsed and cached
         if (!isset($subject->parsedQueries[$cacheKey])) {
-            // If the query is empty, store and return an empty string
             if (!empty($query)) {
+                // Parse the query and cache the result
                 $subject->parsedQueries[$cacheKey] = Parser::parse(new Source($query, 'GraphQL'));
             } else {
+                // Handle empty query
                 $subject->parsedQueries[$cacheKey] = '';
             }
         }
 
-        // Return the cached parsed query
+        // Return the cached result
         return $subject->parsedQueries[$cacheKey];
     }
 }
