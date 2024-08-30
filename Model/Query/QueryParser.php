@@ -31,10 +31,13 @@ class QueryParser extends \Magento\Framework\GraphQl\Query\QueryParser
             if (!empty($query)) {
                 $this->parsedQueries[$cacheKey] = Parser::parse(new Source($query, 'GraphQL'));
             } else {
-                // Return an empty DocumentNode or handle it according to your needs.
-                $this->parsedQueries[$cacheKey] = new DocumentNode(); // Note: This depends on how you handle an "empty" DocumentNode
+                // Use a default or placeholder DocumentNode if needed
+                // You might need to create a valid but empty document or handle this differently
+                $this->parsedQueries[$cacheKey] = new DocumentNode([
+                    'definitions' => [] // or handle with other attributes if required
+                ]);
             }
         }
         return $this->parsedQueries[$cacheKey];
-    }
+    } 
 }

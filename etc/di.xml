@@ -8,6 +8,11 @@
     <preference for="Magento\Framework\GraphQl\Query\QueryParser" type="Stratus21\GraphCorsFix\Model\Query\QueryParser" />
     
 
+    <type name="Magento\Framework\GraphQl\Query\QueryParser">
+        <plugin name="stratus21_graphcorsfix_query_parser_plugin" type="Stratus21\GraphCorsFix\Plugin\QueryParserPluginString"/>
+    </type>
+
+
     <!-- <type name="Magento\Framework\GraphQl\Query\QueryParser">
         <arguments>
             <argument name="your_custom_argument" xsi:type="string">your_value</argument>
