@@ -10,12 +10,28 @@ namespace Stratus21\GraphCorsFix\Model\Query;
 use GraphQL\Language\AST\DocumentNode;
 use GraphQL\Language\Parser;
 use GraphQL\Language\Source;
+use Stratus21\Core\Notify\Responder;
 
 /**
  * Wrapper for GraphQl query parser. It parses query string into a `GraphQL\Language\AST\DocumentNode`
  */
 class QueryParser extends \Magento\Framework\GraphQl\Query\QueryParser
 {
+
+    /**
+     * @var \Stratus21\Core\Notify\Responder
+     */ 
+    protected $responder;
+
+    /**
+     * Constructor
+     *
+     * @param Responder $logger
+     */
+    public function __construct(Responder $responder)
+    {
+        $this->responder            = $responder;
+    }
 
     /**
      * Parse query string into a `GraphQL\Language\AST\DocumentNode`.
@@ -29,15 +45,20 @@ class QueryParser extends \Magento\Framework\GraphQl\Query\QueryParser
         $cacheKey = sha1($query);
         if (!isset($this->parsedQueries[$cacheKey])) {
             if (!empty($query)) {
+                 $this->responder->log('LIAM','info', 'if not empty');
+
                 $this->parsedQueries[$cacheKey] = Parser::parse(new Source($query, 'GraphQL'));
             } else {
-                // Use a default or placeholder DocumentNode if needed
-                // You might need to create a valid but empty document or handle this differently
+                $this->responder->log('LIAM','info', 'if empty definitions');
+                
                 $this->parsedQueries[$cacheKey] = new DocumentNode([
                     'definitions' => [] // or handle with other attributes if required
                 ]);
             }
         }
+
+        $this->responder->log('LIAM','info', 'return now');
+
         return $this->parsedQueries[$cacheKey];
     } 
 }
