@@ -6,32 +6,17 @@
     <preference for="Magento\Framework\GraphQl\Query\Fields" type="Stratus21\GraphCorsFix\Model\Query\Fields" />
 
     <!-- We are not extending the parent class - we are completely overwriting to change the return type -->
-    <!-- <preference for="Magento\Framework\GraphQl\Query\QueryParser" type="Stratus21\GraphCorsFix\Model\Query\QueryParser" /> -->
+    <preference for="Magento\Framework\GraphQl\Query\QueryParser" type="Stratus21\GraphCorsFix\Model\Query\QueryParser" />
     
     <!-- Plugin to change return type on our preference override -->
-    <!-- <type name="Stratus21\GraphCorsFix\Model\Query\QueryParser">
-        <plugin name="stratus21_graphcorsfix_query_parser_plugin" type="Stratus21\GraphCorsFix\Plugin\QueryParserPluginString"/>
-    </type> -->
-
-    <type name="Magento\Framework\GraphQl\Query\QueryParser">
+    <type name="Stratus21\GraphCorsFix\Model\Query\QueryParser">
         <plugin name="stratus21_graphcorsfix_query_parser_plugin" type="Stratus21\GraphCorsFix\Plugin\QueryParserPluginString"/>
     </type>
-
+    
+    <!-- Plugin on original class -->
     <!-- <type name="Magento\Framework\GraphQl\Query\QueryParser">
-        <arguments>
-            <argument name="your_custom_argument" xsi:type="string">your_value</argument>
-        </arguments>
-        <preferences for="Magento\Framework\GraphQl\Query\QueryParser" type="Stratus21\GraphCorsFix\Model\Query\QueryParser"/>
+        <plugin name="stratus21_graphcorsfix_query_parser_plugin" type="Stratus21\GraphCorsFix\Plugin\QueryParserPluginString"/>
     </type> -->
-
-
-    <!-- <type name="Magento\Framework\GraphQl\Query\QueryParser">
-        <plugin name="vendor_module_queryparser_plugin" type="Stratus21\GraphCorsFix\Plugin\QueryParserPlugin" />
-    </type> -->
-
-    <!-- <type name="Magento\Framework\GraphQl\Query\Fields">
-        <plugin name="vendor_module_fields_plugin" type="Stratus21\GraphCorsFix\Plugin\FieldsPlugin" />
-    </type>     -->
 
 </config>
 
