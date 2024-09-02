@@ -12,7 +12,10 @@
     <type name="Stratus21\GraphCorsFix\Model\Query\QueryParser">
         <plugin name="stratus21_graphcorsfix_query_parser_plugin" type="Stratus21\GraphCorsFix\Plugin\QueryParserPluginString"/>
     </type>
-
+    
+    <type name="Magento\Framework\GraphQl\Query\QueryParser">
+        <plugin name="stratus21_graphcorsfix_query_parser_plugin" type="Stratus21\GraphCorsFix\Plugin\QueryParserPluginString"/>
+    </type>
 
     <!-- <type name="Magento\Framework\GraphQl\Query\QueryParser">
         <arguments>
