@@ -4,10 +4,11 @@
     
     <!-- We are not extending the parent class - we are completely overwriting to change the return type -->
     <preference for="Magento\Framework\GraphQl\Query\Fields" type="Stratus21\GraphCorsFix\Model\Query\Fields" />
-    
+
+    <!-- We are not extending the parent class - we are completely overwriting to change the return type -->
     <preference for="Magento\Framework\GraphQl\Query\QueryParser" type="Stratus21\GraphCorsFix\Model\Query\QueryParser" />
     
-
+    <!-- Plugin to change return type on our preference override -->
     <type name="Stratus21\GraphCorsFix\Model\Query\QueryParser">
         <plugin name="stratus21_graphcorsfix_query_parser_plugin" type="Stratus21\GraphCorsFix\Plugin\QueryParserPluginString"/>
     </type>
@@ -34,4 +35,5 @@
 <!--
     Fix: https://github.com/magento/magento2/pull/38786/commits/0bf61134fa9798d9b2127c889624b50751e329bd#diff-e58ef2d5b7f49ce400a3f57258221960563db99a80370ef271cdf10e0d5e40ca
     Files: https://github.com/magento/magento2/blob/0bf61134fa9798d9b2127c889624b50751e329bd/lib/internal/Magento/Framework/GraphQl/Query/Fields.php
+    Files: https://github.com/magento/magento2/blob/0bf61134fa9798d9b2127c889624b50751e329bd/lib/internal/Magento/Framework/GraphQl/Query/QueryParser.php
 -->
