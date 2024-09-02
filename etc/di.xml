@@ -9,9 +9,9 @@
     <preference for="Magento\Framework\GraphQl\Query\QueryParser" type="Stratus21\GraphCorsFix\Model\Query\QueryParser" />
     
     <!-- Plugin to change return type on our preference override -->
-    <type name="Stratus21\GraphCorsFix\Model\Query\QueryParser">
+    <!-- <type name="Stratus21\GraphCorsFix\Model\Query\QueryParser">
         <plugin name="stratus21_graphcorsfix_query_parser_plugin" type="Stratus21\GraphCorsFix\Plugin\QueryParserPluginString"/>
-    </type>
+    </type> -->
     
     <!-- Plugin on original class -->
     <!-- <type name="Magento\Framework\GraphQl\Query\QueryParser">
