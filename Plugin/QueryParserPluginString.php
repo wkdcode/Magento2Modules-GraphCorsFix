@@ -24,6 +24,16 @@ class QueryParserPluginString
     }
 
 
+    /**
+     * Didnt need this in the end but left it here just incase
+     * The idea was to return an empty string but we managed to return a blank fallback query!
+     *
+     * @param \Magento\Framework\GraphQl\Query\QueryParser $subject
+     * @param callable $proceed
+     * @param string $query
+     *
+     * @return void
+     */
     public function aroundParse(QueryParser $subject, callable $proceed, string $query)
     {
         // Modify method behavior
@@ -41,25 +51,4 @@ class QueryParserPluginString
         // Manipulate result if needed
         return $result;
     }
-
-    // public function afterParse(QueryParser $subject, DocumentNode $result, string $query)
-    // {
-    //      // Log to check if the plugin is working
-    //      $this->responder->log('LIAM', 'info', 'afterParse working');
-
-    //      // Check if the query was empty (fall back to minimal query) and if the DocumentNode's definitions are empty
-    //      if (empty($query)) {
-    //          // Log the condition
-    //          $this->responder->log('LIAM', 'info', 'Empty query and empty definitions, returning an empty string');
- 
-    //          // Return an empty string
-    //          return '';
-    //      }
- 
-    //      // Log the result before returning
-    //      $this->responder->log('LIAM', 'info', 'Returning original DocumentNode');
- 
-    //      // Otherwise, return the DocumentNode as is
-    //      return $result;
-    // }
 }
