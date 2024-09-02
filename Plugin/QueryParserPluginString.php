@@ -32,7 +32,8 @@ class QueryParserPluginString
         $this->responder->log('LIAM', 'info', 'aroundParse proceed has ran');
         
         if (empty($query)) {
-            return '';
+            $this->responder->log('LIAM', 'info', 'Query is empty');
+            // return '';
         }
 
         $this->responder->log('LIAM', 'info', 'aroundParse after empty query return');
