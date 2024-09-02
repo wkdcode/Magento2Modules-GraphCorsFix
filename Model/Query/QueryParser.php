@@ -43,6 +43,9 @@ class QueryParser extends \Magento\Framework\GraphQl\Query\QueryParser
     public function parse(string $query): DocumentNode
     {
         $cacheKey = sha1($query);
+
+        $this->responder->log('LIAM','info', 'query - ' . $query);
+
         if (!isset($this->parsedQueries[$cacheKey])) {
             if (!empty($query)) {
                  $this->responder->log('LIAM','info', 'if not empty');
