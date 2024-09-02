@@ -26,18 +26,16 @@ class QueryParserPluginString
 
     public function aroundParse(QueryParser $subject, callable $proceed, string $query)
     {
-        $this->responder->log('LIAM', 'info', 'aroundParse before result');
+        // Modify method behavior
+        $result = $proceed($query);
+
+        $this->responder->log('LIAM', 'info', 'aroundParse proceed has ran');
         
         if (empty($query)) {
             return '';
         }
 
-        $this->responder->log('LIAM', 'info', 'aroundParse after empty query');
-
-        // Modify method behavior
-        $result = $proceed($query);
-
-        $this->responder->log('LIAM', 'info', 'aroundParse after result');
+        $this->responder->log('LIAM', 'info', 'aroundParse after empty query return');
 
         // Manipulate result if needed
         return $result;
