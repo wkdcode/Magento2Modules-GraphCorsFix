@@ -33,16 +33,22 @@ class QueryParserPluginString
      */
     public function afterParse(QueryParser $subject, DocumentNode $result, string $query)
     {
-        $this->responder->log('LIAM','info', 'after working?');
-        // $this->responder->log('LIAM','info', print_r($result->definitions ,true));
+         // Log to check if the plugin is working
+         $subject->responder->log('LIAM', 'info', 'afterParse working');
 
-        // Check if the DocumentNode's definitions are empty
-        if (empty($result->definitions)) {
-            // Return an empty string if definitions are empty
-            return '';
-        }
-
-        // Otherwise, return the DocumentNode as is
-        return $result;
+         // Check if the query was empty (fall back to minimal query) and if the DocumentNode's definitions are empty
+         if (empty($query)) {
+             // Log the condition
+             $subject->responder->log('LIAM', 'info', 'Empty query and empty definitions, returning an empty string');
+ 
+             // Return an empty string
+             return '';
+         }
+ 
+         // Log the result before returning
+         $subject->responder->log('LIAM', 'info', 'Returning original DocumentNode');
+ 
+         // Otherwise, return the DocumentNode as is
+         return $result;
     }
 }
