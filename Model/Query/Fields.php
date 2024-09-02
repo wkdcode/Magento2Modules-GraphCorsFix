@@ -60,4 +60,25 @@ class Fields extends \Magento\Framework\GraphQl\Query\Fields
         $this->fieldsUsedInQuery = $queryFields;
     }
 
+    /**
+     * Extract and return list of all used fields in GraphQL query's variables
+     *
+     * @param array $fields
+     * @param array $variables
+     *
+     * @return void
+     */
+    private function extractVariables(array &$fields, array $variables): void
+    {
+        foreach ($variables as $key => $value) {
+            if (is_array($value)) {
+                $this->extractVariables($fields, $value);
+            } else {
+                if (is_string($key)) {
+                    $fields[$key] = $key;
+                }
+            }
+        }
+    }
+
 }
