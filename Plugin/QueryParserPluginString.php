@@ -31,7 +31,7 @@ class QueryParserPluginString
      * @param string $query
      * @return DocumentNode|string
      */
-    public function aroundParse(QueryParser $subject, DocumentNode $result, string $query)
+    public function afterParse(QueryParser $subject, DocumentNode $result, string $query)
     {
          // Log to check if the plugin is working
          $this->responder->log('LIAM', 'info', 'afterParse working');
