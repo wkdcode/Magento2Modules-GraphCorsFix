@@ -53,8 +53,6 @@ class QueryParser extends \Magento\Framework\GraphQl\Query\QueryParser
                 $this->parsedQueries[$cacheKey] = new DocumentNode([
                     'definitions' => [] // or handle with other attributes if required
                 ]);
-                
-                $this->responder->log('LIAM','info', print_r($this->parsedQueries[$cacheKey] ,true));
 
                 $this->responder->log('LIAM','info', 'if empty definitions');
 

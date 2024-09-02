@@ -33,7 +33,8 @@ class QueryParserPluginString
      */
     public function afterParse(QueryParser $subject, DocumentNode $result, string $query)
     {
-        $this->responder->log('LIAM','info', print_r($result->definitions ,true));
+        $this->responder->log('LIAM','info', 'after working?');
+        // $this->responder->log('LIAM','info', print_r($result->definitions ,true));
 
         // Check if the DocumentNode's definitions are empty
         if (empty($result->definitions)) {
