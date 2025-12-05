@@ -24,6 +24,11 @@ class QueryParser extends \Magento\Framework\GraphQl\Query\QueryParser
     protected $responder;
 
     /**
+     * @var array
+     */
+    protected array $parsedQueries = [];
+
+    /**
      * Constructor
      *
      * @param Responder $logger
