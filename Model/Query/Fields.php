@@ -18,6 +18,8 @@ use Magento\Framework\App\ObjectManager;
 class Fields extends \Magento\Framework\GraphQl\Query\Fields
 {
 
+    protected array $fieldsUsedInQuery = [];
+
     /**
      * Set Query for extracting list of fields.
      *
