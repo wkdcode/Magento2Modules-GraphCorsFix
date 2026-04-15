@@ -21,11 +21,6 @@ class Fields extends \Magento\Framework\GraphQl\Query\Fields
     protected array $fieldsUsedInQuery = [];
 
     /**
-     * @var string[]
-     */
-    private $fieldsUsedInQuery = [];
-
-    /**
      * @var QueryParser
      */
     private $queryParser;
