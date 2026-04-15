@@ -18,6 +18,8 @@ use Magento\Framework\App\ObjectManager;
 class Fields extends \Magento\Framework\GraphQl\Query\Fields
 {
 
+    protected array $fieldsUsedInQuery = [];
+
     /**
      * @var string[]
      */
@@ -36,7 +38,7 @@ class Fields extends \Magento\Framework\GraphQl\Query\Fields
      *
      * @return void
      */
-    public function setQuery(DocumentNode|string $query, array $variables = null)
+    public function setQuery($query, ?array $variables = null)
     {
         $queryFields = [];
         try {
